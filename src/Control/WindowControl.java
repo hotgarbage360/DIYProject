@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -37,6 +38,8 @@ public class WindowControl{
 	@FXML private TextField search;
 	private ProjectManager manager;
 	private Stage window;
+	@FXML
+    private Button newProject;
 	
 	public void makeWindow(Stage window) {
 		this.window = window;
@@ -131,6 +134,26 @@ public class WindowControl{
 		
 		
 	}
+	
+	 @FXML
+	    void handelNewProjectButtonAction() {
+	    	
+	        try {
+	            FXMLLoader loader= new FXMLLoader(getClass().getResource("/CreateNewProject.fxml"));
+	            AnchorPane Ap =  loader.load();
+	            Stage stage = new Stage();
+	            stage.setTitle("Create Project");
+	            Scene window = new Scene(Ap);
+	            stage.setScene(window);
+	            stage.show();
+	            // Hide this current window (if this is what you want)
+	           //(((Node) event.getSource())).getScene().getWindow().hide();
+	        }
+	        catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    } 
+	
 	
 	/**
 	 * Makes a copy of the selected projects.
