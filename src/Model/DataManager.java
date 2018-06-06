@@ -95,6 +95,7 @@ public class DataManager {
 		pm.addUser("emmettkang\nelk9516", 100);
 		Project p1 = new Project("Mercury", "Emmett1", 36000, 12);
 		ObservableList<Material> mat = ProjectManager.createMaterialList();
+		System.out.println(mat);
 		p1.setMaterials(mat);
 		pm.addProject(p1);
 		storeProjects(pm);

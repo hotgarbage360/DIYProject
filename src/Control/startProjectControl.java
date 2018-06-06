@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Model.Material;
 import Model.Project;
 import Model.ProjectManager;
 import javafx.collections.FXCollections;
@@ -46,6 +47,8 @@ public class startProjectControl{
 	private WindowControl main;
 	Project project;
 	ObservableList<Project> data;
+	newProjectWindowControl newProjectWindow;
+	
 
     @FXML
     void handelCancelButtonAction() {
@@ -54,11 +57,12 @@ public class startProjectControl{
 
     
     @FXML
-    void handelFinishButtonAction() {
-    	//ObservableList<Node> input = grid.getChildren();
+    void handelFinishButtonAction() throws IOException {
+    	newProjectWindow = new newProjectWindowControl();
 		if (nameValidation(text.getText())) {
 			errorLabel.setVisible(false);
 			pm.addProject(new Project(text.getText()));
+			newProjectWindow.loadTheList(ProjectManager.createMaterialList());
 			((Stage)(finish.getScene().getWindow())).close();
 		}else {
 			errorLabel.setVisible(true);
@@ -79,18 +83,7 @@ public class startProjectControl{
     
     
     
-//public void add_new_project_to_grid(Button button) {
-//	ObservableList<Node> index = main.gp.getChildren();
-//	int i = 0;
-//	if(index.get(i) == null) {
-//		//main.add_project_to_Grid(button);
-//	}else {
-//		while(index.get(i) != null) {
-//			i++;
-//		}
-//		//main.add_project_to_Grid(button);
-//	}
-//}
+
     
   
     

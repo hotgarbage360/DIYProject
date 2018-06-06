@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 import FileManagement.FileSystem;
+import Model.Material;
 import Model.Project;
 import Model.ProjectManager;
 import javafx.collections.ListChangeListener;
@@ -178,7 +179,9 @@ public class WindowControl{
             stage.setScene(window);
             //(Edited by Kyle) passed reference to project manager to controller class of new window
             startProjectControl controller = loader.getController();
+           // newProjectWindowControl npwc = loader.getController();
             controller.addPM(manager);
+           // npwc.addManager(manager);
             stage.show();
         }
         catch (IOException e) {
@@ -255,8 +258,7 @@ public class WindowControl{
             Scene window = new Scene(Ap);
             stage.setScene(window);
             //uncomment next line if you want to pass something to the controller class
-            newProjectWindowControl controller = loader.getController();
-            //controller.addProject(theProject);
+           // startProjectControl spc = loader.getController();
             stage.show();
         }
         catch (IOException e) {

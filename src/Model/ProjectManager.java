@@ -125,7 +125,7 @@ public class ProjectManager {
 			FileReader fr;
 			BufferedReader br;
 			
-			File file = new File("material.txt");
+			File file = new File("/material.txt");
 			fr = new FileReader(file);
 			br = new BufferedReader(fr);
 			
