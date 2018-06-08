@@ -28,8 +28,9 @@ public class DataManager {
 		ObservableList<Project> ProjectList = PM.getmyProjects();
 		filewriter.write(PM.getMeterNumber()+ "_");
 		
-		if (PM.getMeterNumbers().size() != 0) {;
+		if (PM.getMeterNumbers().size() != 0) {
 			for (int i = 0; i < PM.getMeterNumbers().size(); i++) {
+				System.out.println("The value of the meter number" + String.valueOf(PM.getMeterNumbers().get(i)));
 				filewriter.write(String.valueOf(PM.getMeterNumbers().get(i)));
 				
 				if (i != PM.getMeterNumbers().size()-1) {
@@ -43,6 +44,9 @@ public class DataManager {
 		//Get the projects from the list, store them by attributes into text file.
 		for (int i = 0; i < ProjectList.size(); i++) {
 			Project project = ProjectList.get(i);
+			//print project information
+			System.out.println(project.getName() + "," + project.getCost() + "," 
+					+ project.getHours() + "," + project.getType());
 			filewriter.write(project.getName() + "," + project.getCost() + "," 
 							+ project.getHours() + "," + project.getType());
 			filewriter.write("_");
@@ -95,9 +99,12 @@ public class DataManager {
 			ArrayList<Integer> meterNumbers = new ArrayList<Integer>();
 			for (int i = 0; i < meterNumArr.length; i++) {
 				meterNumbers.add(Integer.parseInt(meterNumArr[i]));
+				System.out.println("retrieved meter number if count is equal to 2: " + Integer.parseInt(meterCollection[i]));
 			}
 		}
+		System.out.println("retrieved meter number: " + Integer.parseInt(meterCollection[0]));
 		retrieved.setMeterNumber(Integer.parseInt(meterCollection[0]));
+		
 		
 		
 		//Read file, create project accordingly and add to the project manager.

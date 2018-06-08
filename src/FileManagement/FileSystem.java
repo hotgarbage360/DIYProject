@@ -68,6 +68,7 @@ public class FileSystem {
 		File f = fileChooser.showOpenDialog(null);
 		if(f != null) {
 			openFile(f);
+			System.out.println("The file name is: " + f.getName() );
 		}
 		return manager;
 	}
