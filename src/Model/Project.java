@@ -26,7 +26,6 @@ public class Project {
 	
 	/*
 	 * @author Kyle Beveridge
-	 * edited by Reza
 	 * */
 	public Project(String theName) {
 		this("None", theName, 0, 0);
@@ -45,8 +44,10 @@ public class Project {
 	 * */
 	public void removeMaterial(Material theMat) {
 		int idx = myMaterials.indexOf(theMat);
+		System.out.println("number of materials before remove : " + myMaterials.size());
 		if(idx != -1) {
 			myMaterials.remove(idx);
+			System.out.println("number of materials after remove : " + myMaterials.size());
 		}
 	}
 	
@@ -64,6 +65,7 @@ public class Project {
 		int i = -1;
 		for(Material m:myMaterials) {
 			if(m.getName() == name) {
+				System.out.println("Material is at location" + myMaterials.indexOf(m));
 				i = myMaterials.indexOf(m);
 				break;
 			}
@@ -126,13 +128,4 @@ public class Project {
 	public void setHours(int myHours) {
 		this.myHours = myHours;
 	}
-	
-	
-	public Button getButton() {
-        return myButton;
-    }
- 
-    public void setRemark(Button theButton) {
-        this.myButton = theButton;
-    }
 }

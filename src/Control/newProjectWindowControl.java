@@ -95,6 +95,7 @@ public class newProjectWindowControl {
 					//a listener attached to the quantity's value will change
 					//the gui value
 					project.getMaterials().get(i).incrementQuantity();
+					System.out.println("Quantity of the material is:" + project.getMaterials().get(i).getQuantity() );
 				} else {
 					//find and add a new material to project
 					for(Material w:allMaterials) {
@@ -102,6 +103,7 @@ public class newProjectWindowControl {
 							Material addin = new Material(w);
 							addin.incrementQuantity();
 							project.addMaterial(addin);
+							
 						}
 					}
 				}
@@ -244,6 +246,8 @@ public class newProjectWindowControl {
 						if(idx>=0) {
 							//get box to place new gui elements in
 							box = addedList.getItems().get(idx);
+							System.out.println("index" + addedList.getItems().get(idx)
+									+ "is empty to add materials");
 						} else{
 							//make new box if there are no empty rows
 							box = new HBox();
