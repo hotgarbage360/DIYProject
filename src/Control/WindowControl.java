@@ -2,8 +2,6 @@ package Control;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ConcurrentModificationException;
 import java.util.Optional;
 import FileManagement.FileSystem;
 import Model.DataManager;
@@ -14,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -22,12 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -56,15 +48,11 @@ public class WindowControl{
 	private ProjectManager manager;
 	private Stage window;
 
-	private Scene windowScene;
-	@FXML
-	//private Button newProject;
 	private ImageView newProject;
 	@FXML 
 	public GridPane gp; 
 	@FXML 
 	public GridPane projectGrid;
-	private startProjectControl spc;
 	
 	
 	@FXML 
@@ -75,7 +63,6 @@ public class WindowControl{
 	public void makeWindow(Stage window,Scene windowScene) {
 		this.window = window;
 		manager = new ProjectManager();
-		this.windowScene = windowScene;
 		data = manager.getmyProjects();
 		newProject.setImage(new Image("/icons/square_plus.png"));
 		data.addListener(new ProjectListListener());//this listener class is at the bottom
@@ -94,15 +81,6 @@ public class WindowControl{
 		if (result.get() == ButtonType.OK){
 		   System.exit(0);
 		}
-	}
-	
-	/**
-	 * Takes care of the search bar
-	 * @author Tyler Pitsch 
-	 */
-	public void handleSearch() {
-		String text = search.getText();
-		search.clear();
 	}
 	
 	/**
@@ -149,19 +127,11 @@ public class WindowControl{
 	 * @author Tyler Pitsch
 	 */
 	public void handleImport()  {
-		/*
-		FileSystem sys = new FileSystem();
-		try {
-			manager = sys.openNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 		FileChooser choice = new FileChooser();
 		File f = choice.showOpenDialog(null);
 		try {
 			DataManager.retrieveProjects(f, manager);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -171,9 +141,6 @@ public class WindowControl{
 	 * @author Tyler Pitsch
 	 */
 	public void handleExport() {
-		/*
-		FileSystem sys = new FileSystem(manager);
-		sys.saveCurrent();*/
 		try {
 			DataManager.storeProjects(manager);
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -181,7 +148,6 @@ public class WindowControl{
 			alert.setHeaderText("Your projects were exported to the file " + manager.getUserEmail() + ".txt in source folder.");
 			alert.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -236,6 +202,18 @@ public class WindowControl{
 	            	int meterNumber = Integer.parseInt(result.substring(result.indexOf("Meter Number: ")+14,result.indexOf("Meter Number: " )+21));
 		            String thisPeriod = result.substring(result.indexOf("this period:")+13,result.indexOf("Same period")-1);
 		           
+		            /**Testing
+		             * SeattleBill.gif
+		             * bill.JPG
+		             * nonSeattle.PNG
+		             * 
+		             * System.out.println(meterNumber);
+		             * System.out.println(thisPeriod);
+		             * 
+		             */
+		            
+		            
+		            
 		            //depending on the information we can upload or throw out the information
 		            int x = Integer.parseInt(thisPeriod);
 		            if(manager.getMeterNumber() != meterNumber) {

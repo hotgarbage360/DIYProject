@@ -130,6 +130,7 @@ public class DataManager {
 		
 		fr.close();
 		br.close();
+		
 	}
 	
 	/*
